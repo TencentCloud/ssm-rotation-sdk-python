@@ -1,0 +1,2 @@
+mysql-connector-python>=8.0.25,<9.0.0
+tencentcloud-sdk-python>=3.0.398
