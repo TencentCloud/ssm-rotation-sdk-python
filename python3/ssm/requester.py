@@ -329,7 +329,7 @@ def get_current_account(secret_name, ssm_acc):
         return None, Error("no valid account info found because secret value is empty")
     try:
         current_user_and_password = json.loads(secret_value)
-    except Exception as exc:
+    except (ValueError, KeyError, TypeError) as exc:
         return None, Error("invalid secret value format: %s" % str(exc))
     if "UserName" not in current_user_and_password or "Password" not in current_user_and_password:
         return None, Error("secret value missing required fields: UserName and/or Password")

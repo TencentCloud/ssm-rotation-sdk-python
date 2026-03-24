@@ -175,7 +175,7 @@ def get_current_account(secret_name, ssm_acc):
 
     try:
         current_user_and_password = json.loads(secret_value)
-    except Exception as exc:
+    except (ValueError, KeyError, TypeError) as exc:
         return None, Error(u"invalid secret value format: %s" % unicode(exc))
     if u"UserName" not in current_user_and_password or u"Password" not in current_user_and_password:
         return None, Error(u"secret value missing required fields: UserName and/or Password")

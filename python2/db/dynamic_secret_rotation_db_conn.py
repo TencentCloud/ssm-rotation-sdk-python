@@ -183,8 +183,10 @@ class DynamicSecretRotationDb(object):
             retired_pools = self._retired_pools
             self._retired_pools = []
 
-        if self._watch_thread and self._watch_thread.is_alive() and self._watch_thread is not threading.current_thread():
-            self._watch_thread.join(1)
+        watcher = self._watch_thread
+        if (watcher and watcher.is_alive()
+                and watcher is not threading.current_thread()):
+            watcher.join(1)
 
         self.__close_pool(current.pool if current else None)
         for retired in retired_pools:
@@ -355,7 +357,7 @@ class DynamicSecretRotationDb(object):
             return
         try:
             pool._remove_connections()
-        except Exception:
+        except (mysql.connector.Error, AttributeError, RuntimeError):
             logging.debug(u"failed to eagerly close old pool", exc_info=True)
 
     def __is_authentication_error(self, exc):
