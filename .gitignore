@@ -50,3 +50,9 @@ test_logs/
 # Large files
 *.zip
 *.tar.gz
+
+# Build / dist
+build/
+dist/
+*.egg-info/
+src/*.egg-info/

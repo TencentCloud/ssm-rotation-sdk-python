@@ -85,12 +85,12 @@ def main():
     # })
 
     # 可选：设置自定义接入点
-    # ssm_service_config.with_endpoint(u"ssm.test.tencentcloudapi.com")
+    # ssm_service_config.with_endpoint(u"ssm.tencentcloudapi.com")
 
     db_config = DbConfig({
         u"secret_name": u"test",          # 凭据名
         u"ip_address": u"127.0.0.1",      # 数据库地址
-        u"port": 58366,                   # 数据库端口
+        u"port": 3306,                    # 数据库端口
         u"db_name": u"database_name",     # 可以为空，或指定具体的数据库名
         u"param_str": u"charset=utf8",
     })

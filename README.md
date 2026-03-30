@@ -1,5 +1,10 @@
 # SSM Rotation SDK for Python
 
+[![PyPI version](https://img.shields.io/pypi/v/ssm-rotation-sdk)](https://pypi.org/project/ssm-rotation-sdk/)
+[![Python](https://img.shields.io/pypi/pyversions/ssm-rotation-sdk)](https://pypi.org/project/ssm-rotation-sdk/)
+[![License](https://img.shields.io/github/license/TencentCloud/ssm-rotation-sdk-python)](LICENSE)
+[![CI](https://github.com/TencentCloud/ssm-rotation-sdk-python/actions/workflows/ci.yml/badge.svg)](https://github.com/TencentCloud/ssm-rotation-sdk-python/actions/workflows/ci.yml)
+
 腾讯云凭据管理服务（SSM）轮转 SDK，支持数据库凭据自动轮转。
 
 ## 功能特性
@@ -26,20 +31,40 @@
 
 ### 环境要求
 
-- Python 3.6+（推荐）或 Python 2.7+
-- Python 3 使用 `python3/` 目录，Python 2 使用 `python2/` 目录
+- Python 3.6+
+- Python 2.7+ 用户请使用 `python2/` 目录下的源码（不支持 pip 安装）
 
-### 安装依赖
+### 安装（推荐）
 
 ```shell
-pip install -r requirements.txt
+pip install ssm-rotation-sdk
+```
+
+**升级版本**
+
+```shell
+pip install --upgrade ssm-rotation-sdk
+```
+
+**查看当前版本**
+
+```python
+import ssm_rotation_sdk
+print(ssm_rotation_sdk.__version__)  # 输出: 1.0.1
+```
+
+### 从源码安装
+
+```shell
+git clone https://github.com/TencentCloud/ssm-rotation-sdk-python.git
+cd ssm-rotation-sdk-python
+pip install -e .
 ```
 
 ### 使用示例
 
 ```python
-from db.dynamic_secret_rotation_db_conn import DynamicSecretRotationDb, Config, DbConfig
-from ssm.requester import SsmAccount
+from ssm_rotation_sdk import DynamicSecretRotationDb, Config, DbConfig, SsmAccount
 
 # 1. SSM 账号配置（三选一）
 
@@ -211,21 +236,30 @@ finally:
 - CAM_ROLE 方式通过元数据服务自动获取和刷新凭据，仅限 CVM 环境
 - `param_str` 需使用 `mysql.connector` 支持的参数
 - Python 2 版本请使用 `python2/` 目录下的代码
+- PyPI 包仅支持 Python 3.6+，Python 2 用户请直接使用源码
 
 ## 项目结构
 
 ```
 ssm-rotation-sdk-python/
-├── python3/                               # Python 3.6+ 版本
-│   ├── db/
-│   │   └── dynamic_secret_rotation_db_conn.py  # 连接工厂（核心类）
-│   ├── ssm/
-│   │   └── requester.py                        # SSM 请求器
-│   └── demo.py                                 # 使用示例
-├── python2/                               # Python 2.7+ 兼容版本（结构同上）
+├── src/ssm_rotation_sdk/                  # PyPI 包源码（Python 3.6+）
+│   ├── __init__.py                        # 包入口 & 版本号
+│   ├── db.py                              # 连接工厂（核心类）
+│   └── requester.py                       # SSM 请求器
+├── python3/                               # Python 3 源码引用版本（旧版）
+├── python2/                               # Python 2.7+ 兼容版本
+├── examples/                              # 使用示例
+│   └── demo.py
+├── tests/                                 # 单元测试
+│   └── test_basic.py
+├── .github/workflows/                     # CI/CD
+│   ├── ci.yml                             # 测试 & 构建
+│   └── publish.yml                        # PyPI 发布（Trusted Publishing）
+├── pyproject.toml                         # 包构建配置
 ├── requirements.txt                       # 依赖包
 ├── CHANGELOG.md                           # 变更日志
 ├── CONTRIBUTING.md                        # 贡献指南
+├── SECURITY.md                            # 安全策略
 └── LICENSE                                # Apache License 2.0
 ```
 

@@ -14,4 +14,20 @@
 # limitations under the License.
 #
 
+"""腾讯云 SSM（凭据管理服务）轮转 SDK"""
+
 __version__ = "1.0.1"
+
+from ssm_rotation_sdk.requester import SsmAccount, CredentialType, Error, DbAccount
+from ssm_rotation_sdk.db import DynamicSecretRotationDb, Config, DbConfig
+
+__all__ = [
+    "__version__",
+    "SsmAccount",
+    "CredentialType",
+    "Error",
+    "DbAccount",
+    "DynamicSecretRotationDb",
+    "Config",
+    "DbConfig",
+]

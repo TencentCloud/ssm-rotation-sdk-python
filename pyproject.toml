@@ -1,0 +1,58 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ssm-rotation-sdk"
+dynamic = ["version"]
+description = "Tencent Cloud SSM (Secrets Manager) rotation SDK for Python — automatic database credential rotation."
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.6"
+authors = [
+    {name = "Tencent Cloud", email = "tencentcloudssm@tencent.com"},
+]
+keywords = ["tencent", "cloud", "ssm", "secrets-manager", "credential-rotation", "database"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Database",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "mysql-connector-python>=8.0.25,<9.0.0",
+    "tencentcloud-sdk-python>=3.0.398",
+]
+
+[project.urls]
+Homepage = "https://github.com/TencentCloud/ssm-rotation-sdk-python"
+Documentation = "https://github.com/TencentCloud/ssm-rotation-sdk-python#readme"
+Repository = "https://github.com/TencentCloud/ssm-rotation-sdk-python"
+Changelog = "https://github.com/TencentCloud/ssm-rotation-sdk-python/blob/main/CHANGELOG.md"
+Issues = "https://github.com/TencentCloud/ssm-rotation-sdk-python/issues"
+
+[tool.hatch.version]
+path = "src/ssm_rotation_sdk/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/ssm_rotation_sdk/",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ssm_rotation_sdk"]

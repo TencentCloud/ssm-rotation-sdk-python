@@ -14,8 +14,8 @@
 # limitations under the License.
 #
 
-import os
 import logging
+import os
 import sys
 import time
 
@@ -85,13 +85,13 @@ def main():
     # })
 
     # 可选：设置自定义接入点
-    # ssm_service_config.with_endpoint("ssm.test.tencentcloudapi.com")
+    # ssm_service_config.with_endpoint("ssm.tencentcloudapi.com")
 
     db_config = DbConfig(
         params={
             'secret_name': "test",          # 凭据名
             'ip_address': "127.0.0.1",      # 数据库地址
-            'port': 58366,                  # 数据库端口
+            'port': 3306,                   # 数据库端口
             'db_name': "database_name",     # 可以为空，或指定具体的数据库名
             'param_str': "charset=utf8",
         })
